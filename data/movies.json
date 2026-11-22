@@ -1,0 +1,41 @@
+[
+  {
+    "id": "mov-1",
+    "title": "Pushpa 2: The Rule",
+    "genre": "Action / Thriller",
+    "duration": "195 min",
+    "rating": "4.8",
+    "posterUrl": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop",
+    "showtimes": [
+      { "id": "show-101", "time": "10:30 AM", "screen": "Audi 1 (IMAX)", "date": "2026-11-23" },
+      { "id": "show-102", "time": "02:15 PM", "screen": "Audi 1 (IMAX)", "date": "2026-11-23" },
+      { "id": "show-103", "time": "06:45 PM", "screen": "Audi 1 (IMAX)", "date": "2026-11-23" },
+      { "id": "show-104", "time": "10:00 PM", "screen": "Audi 1 (IMAX)", "date": "2026-11-23" }
+    ]
+  },
+  {
+    "id": "mov-2",
+    "title": "Gladiator II",
+    "genre": "Action / Historical Drama",
+    "duration": "148 min",
+    "rating": "4.6",
+    "posterUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop",
+    "showtimes": [
+      { "id": "show-201", "time": "11:00 AM", "screen": "Audi 2 (4DX)", "date": "2026-11-23" },
+      { "id": "show-202", "time": "04:30 PM", "screen": "Audi 2 (4DX)", "date": "2026-11-23" },
+      { "id": "show-203", "time": "08:15 PM", "screen": "Audi 2 (4DX)", "date": "2026-11-23" }
+    ]
+  },
+  {
+    "id": "mov-3",
+    "title": "Interstellar",
+    "genre": "Sci-Fi / Adventure",
+    "duration": "169 min",
+    "rating": "4.9",
+    "posterUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop",
+    "showtimes": [
+      { "id": "show-301", "time": "01:00 PM", "screen": "Audi 3 (Dolby Atmos)", "date": "2026-11-23" },
+      { "id": "show-302", "time": "07:30 PM", "screen": "Audi 3 (Dolby Atmos)", "date": "2026-11-23" }
+    ]
+  }
+]

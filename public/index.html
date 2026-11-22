@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CinePass — Premium Movie Reservation Engine</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-icon">🎬</span>
+        <span class="brand-name">CinePass</span>
+        <span class="brand-badge">PRO ENGINE</span>
+      </div>
+      <div class="nav-actions">
+        <div class="city-selector">📍 Mumbai • PVR IMAX</div>
+        <button id="adminToggleBtn" class="btn-ghost">📊 Admin Dashboard</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    
+    <!-- Step A: Movie Selection Carousel -->
+    <section class="section movies-section">
+      <div class="section-header">
+        <h2>Now Showing</h2>
+        <p>Select a blockbuster movie to reserve your prime seats</p>
+      </div>
+      <div class="movie-grid" id="movieGrid">
+        <!-- Dynamic Movies Loaded from /api/movies -->
+      </div>
+    </section>
+
+    <!-- Step B: Showtime & Screen Selector -->
+    <section class="section showtime-section" id="showtimeSection" style="display: none;">
+      <div class="section-header">
+        <h2 id="selectedMovieTitle">Pushpa 2: The Rule</h2>
+        <p id="selectedMovieMeta">Action / Thriller • 195 min</p>
+      </div>
+
+      <div class="showtime-picker">
+        <label>Available Showtimes Today:</label>
+        <div class="showtime-pills" id="showtimePills">
+          <!-- Dynamic Showtimes -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Step C: Cinema Theater Seat Layout (Interactive Canvas) -->
+    <section class="section seat-section" id="seatSection" style="display: none;">
+      
+      <!-- Screen Direction Banner -->
+      <div class="screen-container">
+        <div class="screen-curve"></div>
+        <div class="screen-text">ALL EYES THIS WAY • CINEMA SCREEN</div>
+      </div>
+
+      <!-- Seat Legend -->
+      <div class="seat-legend">
+        <div class="legend-item"><span class="seat-dot available"></span> Available</div>
+        <div class="legend-item"><span class="seat-dot selected"></span> Your Selection</div>
+        <div class="legend-item"><span class="seat-dot locked"></span> Reserved / Locked</div>
+        <div class="legend-item"><span class="seat-dot booked"></span> Sold Out</div>
+      </div>
+
+      <!-- Real-Time Concurrency Lock Timer Pill -->
+      <div class="lock-timer-banner" id="lockTimerBanner" style="display: none;">
+        ⏳ Seats temporarily locked for you: <strong id="lockCountdown">10:00</strong> min remaining
+      </div>
+
+      <!-- 60-Seat Interactive Grid -->
+      <div class="theater-seating" id="seatingGrid">
+        <!-- Rendered by app.js (Classic, Prime, Recliner rows) -->
+      </div>
+
+      <!-- Live Booking Bar (Bottom Summary) -->
+      <div class="booking-summary-bar" id="summaryBar">
+        <div class="summary-details">
+          <div class="summary-seats">Selected: <strong id="summarySeatList">None</strong></div>
+          <div class="summary-price">Total Amount: <strong id="summaryTotalPrice">₹0</strong></div>
+        </div>
+        <button id="checkoutBtn" class="btn-primary" disabled>
+          🔒 Lock Seats & Proceed to Book
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Digital Cinema Pass Modal (Ticket with QR) -->
+  <div class="modal-overlay" id="ticketModal" style="display: none;">
+    <div class="ticket-card">
+      <div class="ticket-header">
+        <span class="ticket-brand">🎟️ CinePass Official Ticket</span>
+        <button class="btn-close" id="closeTicketBtn">✕</button>
+      </div>
+      
+      <div class="ticket-body">
+        <h3 id="ticketMovieName">Pushpa 2: The Rule</h3>
+        <div class="ticket-meta-grid">
+          <div><span>Screen:</span> <strong id="ticketScreen">Audi 1 (IMAX)</strong></div>
+          <div><span>Time:</span> <strong id="ticketTime">06:45 PM</strong></div>
+          <div><span>Seats:</span> <strong id="ticketSeats" class="highlight-seats">C4, C5</strong></div>
+          <div><span>Total Paid:</span> <strong id="ticketTotal">₹560</strong></div>
+        </div>
+
+        <div class="ticket-qr-section">
+          <!-- Real Dynamic QR Code -->
+          <img id="ticketQrImg" src="" alt="Ticket QR Code" class="qr-code">
+          <div class="ticket-booking-id">Booking ID: <strong id="ticketBookingId">BMS-123456</strong></div>
+          <p class="ticket-hint">Scan this QR code at cinema turnstile for direct entry.</p>
+        </div>
+      </div>
+
+      <div class="ticket-footer">
+        <button class="btn-secondary" onclick="window.print()">🖨️ Print Ticket</button>
+        <button class="btn-primary" id="doneBookingBtn">Book Another Movie</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Analytics Modal -->
+  <div class="modal-overlay" id="adminModal" style="display: none;">
+    <div class="admin-card">
+      <div class="ticket-header">
+        <span>📊 Theater Occupancy & Revenue Dashboard</span>
+        <button class="btn-close" id="closeAdminBtn">✕</button>
+      </div>
+      <div class="admin-stats-grid">
+        <div class="stat-box">
+          <span class="stat-label">Total Bookings</span>
+          <span class="stat-value" id="adminTotalBookings">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Tickets Sold</span>
+          <span class="stat-value" id="adminTotalTickets">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Total Box Office Revenue</span>
+          <span class="stat-value text-green" id="adminTotalRevenue">₹0</span>
+        </div>
+      </div>
+      <div class="admin-recent-bookings">
+        <h4>Recent Bookings</h4>
+        <div id="adminRecentList" class="recent-list">Loading...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

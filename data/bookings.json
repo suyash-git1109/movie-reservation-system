@@ -1,0 +1,59 @@
+[
+  {
+    "bookingId": "BMS-513546",
+    "movieTitle": "Interstellar",
+    "showtimeId": "show-301",
+    "screen": "Audi 3 (Dolby Atmos)",
+    "showTime": "01:00 PM",
+    "seats": [
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A1"
+    ],
+    "seatCount": 5,
+    "totalAmount": 900,
+    "customerName": "Suyash (VIP)",
+    "customerEmail": "guest@cinema.com",
+    "status": "confirmed",
+    "bookedAt": "2026-11-22T15:49:11.024Z"
+  },
+  {
+    "bookingId": "BMS-206370",
+    "movieTitle": "Interstellar",
+    "showtimeId": "show-301",
+    "screen": "Audi 3 (Dolby Atmos)",
+    "showTime": "01:00 PM",
+    "seats": [
+      "D7",
+      "D8",
+      "D9",
+      "D10"
+    ],
+    "seatCount": 4,
+    "totalAmount": 1120,
+    "customerName": "Suyash (VIP)",
+    "customerEmail": "guest@cinema.com",
+    "status": "confirmed",
+    "bookedAt": "2026-11-22T15:49:20.947Z"
+  },
+  {
+    "bookingId": "BMS-467635",
+    "movieTitle": "Gladiator II",
+    "showtimeId": "show-203",
+    "screen": "Audi 2 (4DX)",
+    "showTime": "08:15 PM",
+    "seats": [
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "seatCount": 3,
+    "totalAmount": 840,
+    "customerName": "Suyash (VIP)",
+    "customerEmail": "guest@cinema.com",
+    "status": "confirmed",
+    "bookedAt": "2026-11-22T15:58:24.573Z"
+  }
+]
